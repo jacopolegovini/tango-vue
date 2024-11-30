@@ -71,16 +71,25 @@ li {
     border: 1px solid gray;
 }
 
+.inner-square {
+    width: 80%;
+    height: 80%;
+}
+
 .sun-click {
+    position: relative;
+    left: 9px;
+    top: 9px;
     border: 1px solid orange;
     background-color: yellow;
     border-radius: 50%;
 }
 
 .moon-click {
-
     border-radius: 50%;
-    background: white;
-    box-shadow: 2rem 2rem 0 0 blue;
+    box-shadow: 1.1rem 1.1rem 0 0 blue;
+    position: relative;
+    left: -12px;
+    top: -10px;
 }
 </style>
