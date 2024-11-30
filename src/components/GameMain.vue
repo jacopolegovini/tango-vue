@@ -2,18 +2,22 @@
 export default {
     data() {
         return {
-            squares: Array(36).fill(null),
-            sunClicked: false,
-            moonClicked: false,
+            squares: Array(36).fill(0),
             currentIndex: null,
-
         }
     },
     methods: {
         showSun(index) {
             console.log(index)
-            this.currentIndex = index
-            return this.sunClicked = !this.sunClicked
+
+            console.log(this.squares[index])
+            if (this.squares[index] === 0 || this.squares[index] === 1) {
+                this.squares[index]++
+            } else {
+                this.squares[index] = 0
+            }
+
+            console.log(this.squares[index])
         }
     }
 }
@@ -23,7 +27,9 @@ export default {
     <div class="general-container">
         <ul class="game-container">
             <li v-for="(square, index) in squares" :key="index" class="square" @click="showSun(index)">
-                <div v-if="sunClicked && index === currentIndex" class="inner-square sun-click">
+                <div v-if="squares[index] === 1" class="inner-square sun-click">
+                </div>
+                <div v-if="squares[index] === 2" class="inner-square moon-click">
                 </div>
             </li>
         </ul>
@@ -69,5 +75,12 @@ li {
     border: 1px solid orange;
     background-color: yellow;
     border-radius: 50%;
+}
+
+.moon-click {
+
+    border-radius: 50%;
+    background: white;
+    box-shadow: 2rem 2rem 0 0 blue;
 }
 </style>
