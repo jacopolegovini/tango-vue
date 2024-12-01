@@ -64,17 +64,17 @@ export default {
 
 <template>
     <!-- Qui compare la soluzione una volta che si è premuto il bottone -->
-    <div class="solution">
-        <div class="correct-solution" v-if="rightPositionIcon === 36">
-            <h3>Hai vinto, complimenti!</h3>
+    <div class="general-container d-flex flex-column gap-4">
+        <div class="solution">
+            <div class="correct-solution" v-if="rightPositionIcon === 36">
+                <h3>Hai vinto, complimenti!</h3>
+            </div>
+            <div class="wrong-solution" v-else-if="rightPositionIcon !== 36 && rightPositionIcon !== 0">
+                <h3>Hai sbagliato, provaci di nuovo!</h3>
+            </div>
         </div>
-        <div class="wrong-solution" v-else-if="rightPositionIcon !== 36 && rightPositionIcon !== 0">
-            <h3>Hai sbagliato, provaci di nuovo!</h3>
-        </div>
-    </div>
 
-    <!-- Qui è la griglia di gioco -->
-    <div class="general-container d-flex flex-column gap-5">
+        <!-- Qui è la griglia di gioco -->
         <ul class="game-container">
             <li v-for="(square, index) in tangoPosition" :key="index" class="square" @click="showSymbol(index)">
                 <div v-if="tangoPosition[index].initial_position_icon === 1"
@@ -141,6 +141,11 @@ export default {
 </template>
 
 <style scoped>
+h3 {
+    margin: 0;
+    font-weight: 700;
+}
+
 .solution {
     max-width: 1000px;
     margin: 0 auto;
@@ -155,7 +160,7 @@ export default {
 }
 
 .wrong-solution {
-    color: red;
+    color: #b80328;
 }
 
 .general-container {
@@ -213,7 +218,7 @@ li {
 
 .moon-click {
     border-radius: 50%;
-    box-shadow: 1.1rem 1.1rem 0 0 #3A7CE1;
+    box-shadow: 1.1rem 1.1rem 0 0 #1B71FC;
     position: relative;
     left: -2px;
     top: -2px;

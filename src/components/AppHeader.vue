@@ -1,4 +1,6 @@
 <script>
+import { RouterLink } from 'vue-router';
+
 export default {
     data() {
         return {
@@ -18,6 +20,20 @@ export default {
                 <div class="square-general square4"></div>
             </div>
             <h1 class="modak-regular">TANGO</h1>
+            <navbar class="navbar-links">
+                <ul class="d-flex gap-4">
+                    <li>
+                        <RouterLink :to="{ name: 'game' }">
+                            Game
+                        </RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink :to="{ name: 'instruction' }">
+                            Instruction
+                        </RouterLink>
+                    </li>
+                </ul>
+            </navbar>
         </div>
     </div>
 </template>
