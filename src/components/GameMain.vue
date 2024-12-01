@@ -63,7 +63,18 @@ export default {
 </script>
 
 <template>
-    <div class="general-container d-flex gap-5">
+    <!-- Qui compare la soluzione una volta che si è premuto il bottone -->
+    <div class="solution">
+        <div class="correct-solution" v-if="rightPositionIcon === 36">
+            <h3>Hai vinto, complimenti!</h3>
+        </div>
+        <div class="wrong-solution" v-else-if="rightPositionIcon !== 36 && rightPositionIcon !== 0">
+            <h3>Hai sbagliato, provaci di nuovo!</h3>
+        </div>
+    </div>
+
+    <!-- Qui è la griglia di gioco -->
+    <div class="general-container d-flex flex-column gap-5">
         <ul class="game-container">
             <li v-for="(square, index) in tangoPosition" :key="index" class="square" @click="showSymbol(index)">
                 <div v-if="tangoPosition[index].initial_position_icon === 1"
@@ -103,28 +114,30 @@ export default {
         </ul>
         <button class="btn btn-primary" @click="submitResult">Submit</button>
     </div>
-
-
-    <div class="correct-solution" v-if="rightPositionIcon === 36">
-        Hai vinto
-    </div>
-    <!-- <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
-                <div>
-                    X
-                </div>
-            </div>
-            <div v-else-if="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
-                =
-            </div>
-            <div v-else-if="!getSymbol(tangoPosition[index].initial_position_symbol)">
-            </div> -->
 </template>
 
 <style scoped>
+.solution {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.correct-solution {
+    color: green;
+}
+
+.wrong-solution {
+    color: red;
+}
+
 .general-container {
     max-width: 1000px;
     margin: 0 auto;
-    height: 600px;
+    height: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
