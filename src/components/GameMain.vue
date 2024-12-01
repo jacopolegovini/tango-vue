@@ -65,11 +65,10 @@ export default {
             <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
                 X
             </div>
-            <div v-else="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
-                Y
+            <div v-else-if="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
+                =
             </div>
-            <div v-else="!getSymbol(tangoPosition[index].initial_position_symbol)">
-                ciao
+            <div v-else-if="!getSymbol(tangoPosition[index].initial_position_symbol)">
             </div>
         </div>
     </div>
