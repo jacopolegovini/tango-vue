@@ -85,27 +85,51 @@ export default {
                 </div>
 
                 <!-- Qua sono i simboli -->
-                <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
-                    <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
-                        <div class="symbol-position-2">
-                            X
+                <div v-if="tangoPosition[index].initial_position_icon === 0">
+                    <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
+                        <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
+                            <div class="symbol-position-2 symbol-different">
+                                X
+                            </div>
+                        </div>
+                        <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
+                            <div class="symbol-position-3 symbol-different">X</div>
                         </div>
                     </div>
-                    <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
-                        <div class="symbol-position-3">
-                            X
+                    <div v-else-if="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
+                        <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
+                            <div class="symbol-position-2 symbol-equal">
+                                =
+                            </div>
+                        </div>
+                        <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
+                            <div class="symbol-position-3 symbol-equal">
+                                =
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div v-else-if="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
-                    <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
-                        <div class="symbol-position-2 symbol-equal">
-                            =
+                <div v-else-if="tangoPosition[index].initial_position_icon !== 0">
+                    <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
+                        <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
+                            <div class="symbol-position-2-click symbol-different">
+                                X
+                            </div>
+                        </div>
+                        <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
+                            <div class="symbol-position-3-click symbol-different">X</div>
                         </div>
                     </div>
-                    <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
-                        <div class="symbol-position-3 symbol-equal">
-                            =
+                    <div v-else-if="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
+                        <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
+                            <div class="symbol-position-2-click symbol-equal-click">
+                                =
+                            </div>
+                        </div>
+                        <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
+                            <div class="symbol-position-3-click symbol-equal-click">
+                                =
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -174,14 +198,14 @@ li {
 }
 
 .inner-square {
-    width: 80%;
-    height: 80%;
+    width: 60%;
+    height: 60%;
 }
 
 .sun-click {
     position: relative;
-    left: 9px;
-    top: 9px;
+    left: 17px;
+    top: 17px;
     border: 1px solid orange;
     background-color: yellow;
     border-radius: 50%;
@@ -191,8 +215,8 @@ li {
     border-radius: 50%;
     box-shadow: 1.1rem 1.1rem 0 0 blue;
     position: relative;
-    left: -12px;
-    top: -10px;
+    left: -2px;
+    top: -2px;
 }
 
 .symbol-position-2 {
@@ -215,9 +239,37 @@ li {
     background-color: white;
 }
 
+.symbol-position-2-click {
+    position: relative;
+    top: -20px;
+    left: 77px;
+    font-weight: bold;
+    width: 24px;
+    text-align: center;
+    background-color: white;
+    padding: 0;
+}
+
+.symbol-position-3-click {
+    position: relative;
+    top: 23px;
+    left: 32px;
+    font-weight: bold;
+    width: 24px;
+    text-align: center;
+    background-color: white;
+    padding: 0;
+}
+
 .symbol-equal {
-    font-size: 1.5rem;
-    top: 68.5px;
-    left: 35px;
+    font-size: 1.4rem;
+    top: 70px;
+    left: 34px;
+}
+
+.symbol-equal-click {
+    font-size: 1.4rem;
+    top: 17px;
+    left: 34px;
 }
 </style>
