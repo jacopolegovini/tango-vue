@@ -38,6 +38,12 @@ export default {
             } else {
                 return false
             }
+        },
+        getSymbolPosition(number) {
+            let numberToString = number.toString()
+            numberToString = numberToString.charAt(4)
+            let stringToNumber = Number(numberToString)
+            return stringToNumber
         }
     },
     mounted() {
@@ -56,22 +62,35 @@ export default {
                 <div v-if="tangoPosition[index].initial_position_icon === 2"
                     class="square-clicked inner-square moon-click">
                 </div>
+
+                <!-- Qua sono i simboli -->
+                <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
+                    <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
+                        X
+                    </div>
+                    <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
+                        <div class="symbol-position-3">
+                            X
+                        </div>
+                    </div>
+                </div>
+                <div v-else-if="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
+                    =
+                </div>
+                <div v-else-if="!getSymbol(tangoPosition[index].initial_position_symbol)"></div>
             </li>
         </ul>
-        <!-- Qua da mettere poi un array di oggetti (?) per le x e gli = -->
     </div>
-    <div class="symbol-container">
-        <div v-for="(symbol, index) in tangoPosition" :key="index">
-            <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
-                X
+    <!-- <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
+                <div>
+                    X
+                </div>
             </div>
             <div v-else-if="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
                 =
             </div>
             <div v-else-if="!getSymbol(tangoPosition[index].initial_position_symbol)">
-            </div>
-        </div>
-    </div>
+            </div> -->
 </template>
 
 <style scoped>
@@ -134,5 +153,17 @@ li {
     position: relative;
     left: -12px;
     top: -10px;
+}
+
+.symbol-position-2 {
+    position: relative;
+    top: 31px;
+    left: 84px;
+}
+
+.symbol-position-3 {
+    position: relative;
+    top: 76px;
+    left: 38px;
 }
 </style>
