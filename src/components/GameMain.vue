@@ -1,9 +1,12 @@
 <script>
+import axios from 'axios';
 export default {
     data() {
         return {
             squares: Array(36).fill(0),
             currentIndex: null,
+            apiUrl: 'http://127.0.0.1:8000/api/tangos',
+            tangoPosition: []
         }
     },
     methods: {
@@ -18,7 +21,20 @@ export default {
             }
 
             console.log(this.squares[index])
+        },
+        getTangoApi() {
+            axios.get(this.apiUrl)
+                .then((response) => {
+                    console.log(response.data.results)
+                    this.tangoPosition = response.data.results;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
+    },
+    mounted() {
+        this.getTangoApi()
     }
 }
 </script>
@@ -27,12 +43,13 @@ export default {
     <div class="general-container">
         <ul class="game-container">
             <li v-for="(square, index) in squares" :key="index" class="square" @click="showSun(index)">
-                <div v-if="squares[index] === 1" class="inner-square sun-click">
+                <div v-if="squares[index] === 1" class="square-clicked inner-square sun-click">
                 </div>
-                <div v-if="squares[index] === 2" class="inner-square moon-click">
+                <div v-if="squares[index] === 2" class="square-clicked inner-square moon-click">
                 </div>
             </li>
         </ul>
+        <!-- Qua da mettere poi un array di oggetti (?) per le x e gli = -->
     </div>
 </template>
 
@@ -41,6 +58,10 @@ export default {
     max-width: 1000px;
     margin: 0 auto;
     height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .game-container {
@@ -62,6 +83,7 @@ export default {
 ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 li {
