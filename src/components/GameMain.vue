@@ -136,7 +136,7 @@ export default {
                 <div v-else-if="!getSymbol(tangoPosition[index].initial_position_symbol)"></div>
             </li>
         </ul>
-        <button class="btn btn-primary" @click="submitResult">Submit</button>
+        <button class="btn btn-primary" @click="submitResult">Ho finito!</button>
     </div>
 </template>
 

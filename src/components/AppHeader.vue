@@ -48,7 +48,7 @@ export default {
 h1 {
     margin: 0;
     padding-right: 20px;
-    border-right: 4px solid #212529;
+    border-right: 4px solid #28231D;
 }
 
 .header-general {
@@ -89,5 +89,16 @@ h1 {
 
 .square4 {
     background-color: #FFB500;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li * {
+    color: #28231D;
+    font-weight: bold;
 }
 </style>
