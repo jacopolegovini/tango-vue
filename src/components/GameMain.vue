@@ -6,7 +6,8 @@ export default {
             squares: Array(36).fill(0),
             currentIndex: null,
             apiUrl: 'http://127.0.0.1:8000/api/tangos',
-            tangoPosition: []
+            tangoPosition: [],
+            rightPositionIcon: 0
         }
     },
     methods: {
@@ -44,6 +45,15 @@ export default {
             numberToString = numberToString.charAt(4)
             let stringToNumber = Number(numberToString)
             return stringToNumber
+        },
+        submitResult() {
+            for (let i = 0; i < 36; i++) {
+                if (this.tangoPosition[i].initial_position_icon === this.tangoPosition[i].final_position_icon) {
+                    console.log(this.tangoPosition[i].initial_position_icon)
+                    this.rightPositionIcon++
+                }
+            }
+            console.log(this.rightPositionIcon)
         }
     },
     mounted() {
@@ -53,7 +63,7 @@ export default {
 </script>
 
 <template>
-    <div class="general-container">
+    <div class="general-container d-flex gap-5">
         <ul class="game-container">
             <li v-for="(square, index) in tangoPosition" :key="index" class="square" @click="showSymbol(index)">
                 <div v-if="tangoPosition[index].initial_position_icon === 1"
@@ -91,6 +101,12 @@ export default {
                 <div v-else-if="!getSymbol(tangoPosition[index].initial_position_symbol)"></div>
             </li>
         </ul>
+        <button class="btn btn-primary" @click="submitResult">Submit</button>
+    </div>
+
+
+    <div class="correct-solution" v-if="rightPositionIcon === 36">
+        Hai vinto
     </div>
     <!-- <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
                 <div>
