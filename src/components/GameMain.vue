@@ -10,10 +10,7 @@ export default {
         }
     },
     methods: {
-        showSun(index) {
-            console.log(index)
-
-            console.log(this.tangoPosition[index].initial_position_icon)
+        showSymbol(index) {
             if (this.tangoPosition[index].initial_position_icon === 0 || this.tangoPosition[index].initial_position_icon === 1) {
                 this.tangoPosition[index].initial_position_icon++
             } else {
@@ -31,6 +28,16 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
+        },
+        getSymbol(number) {
+            let numberToString = number.toString()
+            if (numberToString.length > 2) {
+                numberToString = numberToString.charAt(3)
+                let stringToNumber = Number(numberToString)
+                return stringToNumber
+            } else {
+                return false
+            }
         }
     },
     mounted() {
@@ -42,7 +49,7 @@ export default {
 <template>
     <div class="general-container">
         <ul class="game-container">
-            <li v-for="(square, index) in tangoPosition" :key="index" class="square" @click="showSun(index)">
+            <li v-for="(square, index) in tangoPosition" :key="index" class="square" @click="showSymbol(index)">
                 <div v-if="tangoPosition[index].initial_position_icon === 1"
                     class="square-clicked inner-square sun-click">
                 </div>
@@ -52,6 +59,19 @@ export default {
             </li>
         </ul>
         <!-- Qua da mettere poi un array di oggetti (?) per le x e gli = -->
+    </div>
+    <div class="symbol-container">
+        <div v-for="(symbol, index) in tangoPosition" :key="index">
+            <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
+                X
+            </div>
+            <div v-else="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
+                Y
+            </div>
+            <div v-else="!getSymbol(tangoPosition[index].initial_position_symbol)">
+                ciao
+            </div>
+        </div>
     </div>
 </template>
 
