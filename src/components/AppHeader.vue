@@ -24,12 +24,12 @@ export default {
                 <ul class="d-flex gap-4">
                     <li>
                         <RouterLink :to="{ name: 'game' }">
-                            Game
+                            Gioco
                         </RouterLink>
                     </li>
                     <li>
                         <RouterLink :to="{ name: 'instruction' }">
-                            Instruction
+                            Regolamento
                         </RouterLink>
                     </li>
                 </ul>
