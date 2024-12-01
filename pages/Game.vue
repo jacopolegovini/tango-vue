@@ -20,7 +20,6 @@ export default {
 <template>
     <AppHeader />
     <GameMain />
-    <AppFooter />
 </template>
 
 <style scoped></style>

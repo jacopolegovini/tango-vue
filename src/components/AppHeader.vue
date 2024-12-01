@@ -9,7 +9,69 @@ export default {
 </script>
 
 <template>
-    <h1>Header</h1>
+    <div class="header-general">
+        <div class="container flex-container">
+            <div class="logo">
+                <div class="square-general square1"></div>
+                <div class="square-general square2"></div>
+                <div class="square-general square3"></div>
+                <div class="square-general square4"></div>
+            </div>
+            <h1 class="modak-regular">TANGO</h1>
+        </div>
+    </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.modak-regular {
+    font-family: "Modak", system-ui;
+    font-weight: bold;
+    font-style: normal;
+}
+
+h1 {
+    margin: 0;
+    padding-right: 20px;
+    border-right: 4px solid #212529;
+}
+
+.header-general {
+    background-color: lightsalmon;
+    height: 70px;
+}
+
+.flex-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    height: 100%;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square-general {
+    height: 20px;
+    width: 20px;
+}
+
+.square1 {
+    background-color: #65B0FF;
+}
+
+.square2 {
+    background-color: white;
+}
+
+.square3 {
+    background-color: white;
+}
+
+.square4 {
+    background-color: #FFB500;
+}
+</style>

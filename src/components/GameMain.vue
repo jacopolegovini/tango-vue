@@ -206,14 +206,14 @@ li {
     position: relative;
     left: 17px;
     top: 17px;
-    border: 1px solid orange;
-    background-color: yellow;
+    border: 2px solid #A55F2C;
+    background-color: #FCA61B;
     border-radius: 50%;
 }
 
 .moon-click {
     border-radius: 50%;
-    box-shadow: 1.1rem 1.1rem 0 0 blue;
+    box-shadow: 1.1rem 1.1rem 0 0 #3A7CE1;
     position: relative;
     left: -2px;
     top: -2px;
