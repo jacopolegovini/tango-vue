@@ -13,14 +13,14 @@ export default {
         showSun(index) {
             console.log(index)
 
-            console.log(this.squares[index])
-            if (this.squares[index] === 0 || this.squares[index] === 1) {
-                this.squares[index]++
+            console.log(this.tangoPosition[index].initial_position_icon)
+            if (this.tangoPosition[index].initial_position_icon === 0 || this.tangoPosition[index].initial_position_icon === 1) {
+                this.tangoPosition[index].initial_position_icon++
             } else {
-                this.squares[index] = 0
+                this.tangoPosition[index].initial_position_icon = 0
             }
 
-            console.log(this.squares[index])
+            console.log(this.tangoPosition[index].initial_position_icon)
         },
         getTangoApi() {
             axios.get(this.apiUrl)
@@ -42,10 +42,12 @@ export default {
 <template>
     <div class="general-container">
         <ul class="game-container">
-            <li v-for="(square, index) in squares" :key="index" class="square" @click="showSun(index)">
-                <div v-if="squares[index] === 1" class="square-clicked inner-square sun-click">
+            <li v-for="(square, index) in tangoPosition" :key="index" class="square" @click="showSun(index)">
+                <div v-if="tangoPosition[index].initial_position_icon === 1"
+                    class="square-clicked inner-square sun-click">
                 </div>
-                <div v-if="squares[index] === 2" class="square-clicked inner-square moon-click">
+                <div v-if="tangoPosition[index].initial_position_icon === 2"
+                    class="square-clicked inner-square moon-click">
                 </div>
             </li>
         </ul>
