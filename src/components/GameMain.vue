@@ -66,7 +66,9 @@ export default {
                 <!-- Qua sono i simboli -->
                 <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
                     <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
-                        X
+                        <div class="symbol-position-2">
+                            X
+                        </div>
                     </div>
                     <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
                         <div class="symbol-position-3">
@@ -75,7 +77,16 @@ export default {
                     </div>
                 </div>
                 <div v-else-if="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
-                    =
+                    <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
+                        <div class="symbol-position-2 symbol-equal">
+                            =
+                        </div>
+                    </div>
+                    <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
+                        <div class="symbol-position-3 symbol-equal">
+                            =
+                        </div>
+                    </div>
                 </div>
                 <div v-else-if="!getSymbol(tangoPosition[index].initial_position_symbol)"></div>
             </li>
@@ -158,12 +169,26 @@ li {
 .symbol-position-2 {
     position: relative;
     top: 31px;
-    left: 84px;
+    left: 77px;
+    font-weight: bold;
+    width: 24px;
+    text-align: center;
+    background-color: white;
 }
 
 .symbol-position-3 {
     position: relative;
     top: 76px;
-    left: 38px;
+    left: 32px;
+    font-weight: bold;
+    width: 24px;
+    text-align: center;
+    background-color: white;
+}
+
+.symbol-equal {
+    font-size: 1.5rem;
+    top: 68.5px;
+    left: 35px;
 }
 </style>
