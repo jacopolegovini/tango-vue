@@ -54,6 +54,11 @@ export default {
                 }
             }
             console.log(this.rightPositionIcon)
+        },
+        resetGame() {
+            // window.location.reload()
+            this.getTangoApi()
+            this.rightPositionIcon = 0
         }
     },
     mounted() {
@@ -136,7 +141,10 @@ export default {
                 <div v-else-if="!getSymbol(tangoPosition[index].initial_position_symbol)"></div>
             </li>
         </ul>
-        <button class="btn btn-primary" @click="submitResult">Ho finito!</button>
+        <div class="d-flex justify-content-center gap-4">
+            <button class="btn btn-primary" @click="submitResult">Ho finito!</button>
+            <button class="btn btn-secondary" @click="resetGame">Reset</button>
+        </div>
     </div>
 </template>
 
