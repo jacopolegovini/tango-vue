@@ -20,7 +20,7 @@ export default {
                 <div class="square-general square4"></div>
             </div>
             <h1 class="modak-regular">TANGO</h1>
-            <navbar class="navbar-links">
+            <nav class="navbar-links">
                 <ul class="d-flex gap-4">
                     <li>
                         <RouterLink :to="{ name: 'game' }">
@@ -33,7 +33,7 @@ export default {
                         </RouterLink>
                     </li>
                 </ul>
-            </navbar>
+            </nav>
         </div>
     </div>
 </template>

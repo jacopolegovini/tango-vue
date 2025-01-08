@@ -69,83 +69,85 @@ export default {
 
 <template>
     <!-- Qui compare la soluzione una volta che si è premuto il bottone -->
-    <div class="general-container d-flex flex-column gap-4">
-        <div class="solution">
-            <div class="correct-solution" v-if="rightPositionIcon === 36">
-                <h3>Hai vinto, complimenti!</h3>
+    <main>
+        <div class="general-container d-flex flex-column gap-4">
+            <div class="solution">
+                <div class="correct-solution" v-if="rightPositionIcon === 36">
+                    <h3>Hai vinto, complimenti!</h3>
+                </div>
+                <div class="wrong-solution" v-else-if="rightPositionIcon !== 36 && rightPositionIcon !== 0">
+                    <h3>Hai sbagliato, provaci di nuovo!</h3>
+                </div>
             </div>
-            <div class="wrong-solution" v-else-if="rightPositionIcon !== 36 && rightPositionIcon !== 0">
-                <h3>Hai sbagliato, provaci di nuovo!</h3>
+
+            <!-- Qui è la griglia di gioco -->
+            <ul class="game-container">
+                <li v-for="(square, index) in tangoPosition" :key="index" class="square" @click="showSymbol(index)">
+                    <div v-if="tangoPosition[index].initial_position_icon === 1"
+                        class="square-clicked inner-square sun-click">
+                    </div>
+                    <div v-if="tangoPosition[index].initial_position_icon === 2"
+                        class="square-clicked inner-square moon-click">
+                    </div>
+
+                    <!-- Qua sono i simboli -->
+                    <div v-if="tangoPosition[index].initial_position_icon === 0">
+                        <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
+                            <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
+                                <div class="symbol-position-2 symbol-different">
+                                    X
+                                </div>
+                            </div>
+                            <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
+                                <div class="symbol-position-3 symbol-different">X</div>
+                            </div>
+                        </div>
+                        <div v-else-if="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
+                            <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
+                                <div class="symbol-position-2 symbol-equal">
+                                    =
+                                </div>
+                            </div>
+                            <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
+                                <div class="symbol-position-3 symbol-equal">
+                                    =
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-else-if="tangoPosition[index].initial_position_icon !== 0">
+                        <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
+                            <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
+                                <div class="symbol-position-2-click symbol-different">
+                                    X
+                                </div>
+                            </div>
+                            <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
+                                <div class="symbol-position-3-click symbol-different">X</div>
+                            </div>
+                        </div>
+                        <div v-else-if="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
+                            <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
+                                <div class="symbol-position-2-click symbol-equal-click">
+                                    =
+                                </div>
+                            </div>
+                            <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
+                                <div class="symbol-position-3-click symbol-equal-click">
+                                    =
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-else-if="!getSymbol(tangoPosition[index].initial_position_symbol)"></div>
+                </li>
+            </ul>
+            <div class="d-flex justify-content-center gap-4">
+                <button class="btn btn-primary" @click="submitResult">Ho finito!</button>
+                <button class="btn btn-secondary" @click="resetGame">Reset</button>
             </div>
         </div>
-
-        <!-- Qui è la griglia di gioco -->
-        <ul class="game-container">
-            <li v-for="(square, index) in tangoPosition" :key="index" class="square" @click="showSymbol(index)">
-                <div v-if="tangoPosition[index].initial_position_icon === 1"
-                    class="square-clicked inner-square sun-click">
-                </div>
-                <div v-if="tangoPosition[index].initial_position_icon === 2"
-                    class="square-clicked inner-square moon-click">
-                </div>
-
-                <!-- Qua sono i simboli -->
-                <div v-if="tangoPosition[index].initial_position_icon === 0">
-                    <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
-                        <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
-                            <div class="symbol-position-2 symbol-different">
-                                X
-                            </div>
-                        </div>
-                        <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
-                            <div class="symbol-position-3 symbol-different">X</div>
-                        </div>
-                    </div>
-                    <div v-else-if="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
-                        <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
-                            <div class="symbol-position-2 symbol-equal">
-                                =
-                            </div>
-                        </div>
-                        <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
-                            <div class="symbol-position-3 symbol-equal">
-                                =
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div v-else-if="tangoPosition[index].initial_position_icon !== 0">
-                    <div v-if="getSymbol(tangoPosition[index].initial_position_symbol) === 0">
-                        <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
-                            <div class="symbol-position-2-click symbol-different">
-                                X
-                            </div>
-                        </div>
-                        <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
-                            <div class="symbol-position-3-click symbol-different">X</div>
-                        </div>
-                    </div>
-                    <div v-else-if="getSymbol(tangoPosition[index].initial_position_symbol) === 1">
-                        <div v-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 2">
-                            <div class="symbol-position-2-click symbol-equal-click">
-                                =
-                            </div>
-                        </div>
-                        <div v-else-if="getSymbolPosition(tangoPosition[index].initial_position_symbol) === 3">
-                            <div class="symbol-position-3-click symbol-equal-click">
-                                =
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div v-else-if="!getSymbol(tangoPosition[index].initial_position_symbol)"></div>
-            </li>
-        </ul>
-        <div class="d-flex justify-content-center gap-4">
-            <button class="btn btn-primary" @click="submitResult">Ho finito!</button>
-            <button class="btn btn-secondary" @click="resetGame">Reset</button>
-        </div>
-    </div>
+    </main>
 </template>
 
 <style scoped>
